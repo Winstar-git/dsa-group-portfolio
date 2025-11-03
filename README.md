@@ -15,25 +15,27 @@ The website serves as a **portfolio** showcasing our team, our programming works
 
 ## 🧱 Project Structure
 
+```
 dsa-portfolio-website/
 │
 ├── data/ # JSON files containing project information
-│ ├── projects.json
+│  ├── projects.json
 │
 ├── static/ # Static assets (CSS, JS, images)
-│ ├── css/
-│ ├── js/
-│ └── images/
+│  ├── css/
+│  ├── js/
+│  └── images/
 │
 ├── templates/ # HTML templates for Flask
-│ ├── base.html
-│ ├── index.html
-│ ├── about.html
-│ └── works.html
+│  ├── base.html
+│  ├── index.html
+│  ├── about.html
+│  └── works.html
 │
 ├── app.py # Flask application entry point
 ├── requirements.txt # Dependencies
 └── README.md # Project documentation (this file)
+```
 ---
 
 ## 📄 Page Overview
@@ -43,7 +45,6 @@ dsa-portfolio-website/
 | **Home (index.html)** | Introduction to the project and its purpose |
 | **About (about.html)** | Meet the team — introduction of each member |
 | **Works (works.html)** | Showcases our web programs and DSA projects |
-
 ---
 
 ## 👥 Team Members
