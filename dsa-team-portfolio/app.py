@@ -1,5 +1,6 @@
-from flask import Flask, render_template
-from backend.doubly_ended_queue import Queue
+from flask import Flask, render_template, send_from_directory
+from backend import Queue
+import os
 
 app = Flask(__name__)
 
