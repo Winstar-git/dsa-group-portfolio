@@ -236,3 +236,75 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
     transform: translateY(-8px);
     box-shadow: 0 14px 30px rgba(2,6,23,0.12);
 }
+
+.container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:2rem
+}
+
+.work-card{
+    background: #2c334752;
+    padding:1rem;
+    border-radius:12px;
+    text-align:center
+}
+
+.container .work-card h2,
+.container .work-card h4 {
+    color: #1f43e1;
+}
+
+.container .work-card p {
+    color: #67a9ff;
+}
+
+
+.works{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1  rem;
+    margin-top: 2rem;
+}
+.work {
+    background: rgba(0 20 255 / 13%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.work-action {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.work h4 {
+    margin: 0 0 1rem;
+    color: #fff;
+}
+
+.work p {
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+}
+.try-button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+    min-width: 160px;
+    text-align: center;
+}
+
+.try-button {
+    background: #052fa5;
+    color: rgb(158 193 227);
+}
