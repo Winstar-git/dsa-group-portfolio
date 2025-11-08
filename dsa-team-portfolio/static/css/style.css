@@ -118,7 +118,7 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
 .index-section {
     display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 5px 5%;
   flex: wrap;
 }
@@ -131,15 +131,11 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
   justify-content: flex-start;
   flex-direction: column;
   display: flex;
-  position: absolute;
-  top: 30%;
-  left:25%;
-  transform: translate(-50%, -50%);
-  
+  transform: translateY(-10rem);
 }
 
 .index-text h1 {
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: bold;
     line-height: 1.3;
     color: #8abdff;
@@ -157,8 +153,6 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
     1px 20px 20px rgba(16, 16, 16, 0.3),
     1px 25px 40px rgba(16, 16, 16, 0.3),
     1px 30px 80px rgba(16, 16, 16, 0.3);
-    z-index: 2;
-    
 
 }
 
@@ -166,36 +160,22 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
     font-size: 0.8rem;
     letter-spacing: 0.3rem;
     color: white;
-    text-shadow: 
-    0 1px 0 #65686b,
-    0 2px 0 #65686b,
-    0 3px 0 #65686b,
-    0 4px 0 #65686b,
-    0 5px 0 #65686b,
-    1px 15px 10px rgba(16, 16, 16, 0.3),
-    1px 20px 20px rgba(16, 16, 16, 0.3),
-    1px 25px 40px rgba(16, 16, 16, 0.3),
-    1px 30px 80px rgba(16, 16, 16, 0.3);
-
     
 }
 
-.index-pic img{
-    position: absolute;
-    top:3;
-    right: 0;
+.index-pic {
+    position: relative;
     height: 100%;
-    max-width: 900px;
+    max-width: 500px;
     aspect-ratio: 5/4;
     flex-shrink: 0;
-    display: block;   
-    object-fit: cover;           
+    display: flex;              
     justify-content: center;    
     align-items: center;        
     margin: 0 auto;             
     border-radius: 30px;
     overflow: hidden;          
-    z-index: -1;
+    
 
 }
 
@@ -209,7 +189,7 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
 
 .contact-card {
     flex: 1 1 300px;
-    background: #2c334752;
+    background: #ffffff;
     padding: 18px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(2,6,23,0.06);
@@ -220,7 +200,7 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
 .contact-card h2 {
     font-size: 1.6rem;
     margin: 0 0 8px 0;
-    color: #1f43e1;
+    color: #021569;
 }
 
 .contact-card a {
