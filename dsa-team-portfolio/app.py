@@ -16,10 +16,13 @@ def about():
 def works():
     return render_template('works.html')
 
+<<<<<<< HEAD
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
+=======
+>>>>>>> recover-history
 @app.route('/queue')
 def queue():
     return render_template('queue.html')
