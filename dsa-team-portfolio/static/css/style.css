@@ -104,19 +104,26 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
     transition: background 0.3s ease;
 }
 
+.hero {
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+
 .index-section {
     display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 100px 80px;
+  padding: 10px 80px;
 }
 
 
 .index-text {
   text-align: center;
   position: relative;
-  left: -250px;
+  left: -55px;
   text-transform:uppercase;
+  padding-bottom: 200px;
 }
 
 .index-text h1 {
@@ -132,6 +139,7 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
     
 }
 
+<<<<<<< HEAD
 /* Contact */
 .contact-list {
     display: flex;
@@ -168,4 +176,12 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
 .contact-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 14px 30px rgba(2,6,23,0.12);
+=======
+.index-pic img {
+    float:right;
+    height: 500px;
+    width: 500px;
+    margin-left: 200px;
+
+>>>>>>> 842212c857c341f1fa5b7eb1c91d79469049de55
 }
