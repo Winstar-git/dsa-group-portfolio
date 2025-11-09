@@ -1,14 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="index-hero">
-  <div class="index-content">
-    <div class="index-text">
-      <h1>T(HAT)</h1>
-      <h2>Group</h2>
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img src="{{ url_for('static', filename='image/that.png') }}" alt="ThatDev Team Logo" class="hero-logo">
+    <h1 class="hero-title"><span>T(HAT)</span> Group</h1>
+    <p class="hero-tagline">Building creative and efficient web solutions — one line at a time.</p>
+    <a href="{{ url_for('works') }}" class="hero-btn">Explore Our Work</a>
+  </div>
+</section>
+
+<!-- INTRO SECTION -->
+<section class="intro-section">
+  <div class="intro-container">
+    <h2>Who We Are</h2>
+    <p>
+      We are <strong>T(HAT) Group</strong> — a dynamic team of developers passionate about crafting clean,
+      functional, and visually stunning digital experiences. Combining creativity and precision, we deliver
+      solutions that work beautifully across every screen.
+    </p>
+    <a href="{{ url_for('about') }}" class="intro-btn">Meet the Team</a>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="skills-section">
+  <h2>Our Core Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <i class="fas fa-code"></i>
+      <h3>Frontend Development</h3>
+      <p>Building beautiful, responsive, and accessible interfaces using HTML, CSS, and JavaScript.</p>
     </div>
-    <div class="index-pic">
-      <img src="{{ url_for('static', filename='image/indexpc.png') }}" alt="T(HAT) Group Illustration">
+    <div class="skill-card">
+      <i class="fas fa-database"></i>
+      <h3>Backend Development</h3>
+      <p>Creating powerful and scalable systems with Python, Flask, and database integrations.</p>
+    </div>
+    <div class="skill-card">
+      <i class="fas fa-palette"></i>
+      <h3>UI/UX Design</h3>
+      <p>Designing intuitive layouts and smooth interactions that enhance user experience.</p>
     </div>
   </div>
 </section>

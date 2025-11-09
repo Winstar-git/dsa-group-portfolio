@@ -576,3 +576,163 @@ body {
   margin: 0 auto 15px;
   text-align: center;
 }
+
+/* ========== HERO SECTION ========== */
+.hero-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #001a66, #004bff, #6ecbff);
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-content {
+  z-index: 1;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero-title {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.hero-title span {
+  color: #8abdff;
+  text-shadow: 0 0 20px rgba(106, 181, 255, 0.7);
+}
+
+.hero-tagline {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  color: #dceaff;
+}
+
+.hero-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #8abdff, #4f9dff);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #001a66;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(111, 187, 255, 0.7);
+
+
+}
+
+/* ========== INTRO SECTION ========== */
+.intro-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 80px 20px;
+  text-align: center;
+  color: #eaf2ff;
+}
+
+.intro-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.intro-section h2 {
+  font-size: 2.2rem;
+  color: #8abdff;
+  margin-bottom: 1rem;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d9e5ff;
+}
+
+.intro-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 24px;
+  background: #052fa5;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.intro-btn:hover {
+  background: #004bff;
+}
+
+/* ========== SKILLS SECTION ========== */
+.skills-section {
+  padding: 100px 5%;
+  text-align: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px 20px;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(111,187,255,0.5);
+}
+
+.skill-card i {
+  font-size: 2.5rem;
+  color: #8abdff;
+  margin-bottom: 15px;
+}
+
+.skill-card h3 {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #a9dfff;
+}
+.hero-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+  animation: floatLogo 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(138,189,255,0.7));
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
