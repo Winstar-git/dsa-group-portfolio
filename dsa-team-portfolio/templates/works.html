@@ -3,15 +3,15 @@
 {% block content %}
   <div class="container">
     <div class="work-card">
-      <h2 class="section-title">OUR PROGRAM/S</h2>
-      <p class="lead">made by us truly</p>
+      <h2 class="gradient-text">OUR PROGRAM/S</h2>
+      <p class="lead">--------------------------------------------------  made by us truly  --------------------------------------------------</p>
 
       <div class="works">
         {% if works %}
           {% for p in works %}
             <div class="work">
-              <h4>{{ p.title }}</h4>
-              <p>{{ p.description }}</p>
+              <h4 class= "gradient-text">{{ p.title }}</h4>
+              <h5>{{ p.description }}</h5>
               {% if p.url %}
                 <div class="work-action">
                   <a href="{{ p.url }}" class="try-button">Open</a>
