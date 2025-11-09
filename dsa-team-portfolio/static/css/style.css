@@ -335,6 +335,16 @@ html, body, input, textarea, select, button, h1, h2, h3, h4, h5, h6, code, pre {
 }
 
 /* Queue Styles */
+.queue-container {
+    flex: 1 1 300px;
+    background: #2c334752;
+    padding: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(2,6,23,0.06);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    min-width: 260px;
+}
+
 .queue-container{
     max-width:1200px;
     margin:0 auto;
