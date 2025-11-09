@@ -6,23 +6,25 @@
     <title>AlStarKenPaRaphVinKentLinJim</title>
     <!-- Google Fonts: Momo Trust Display -->
     <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-        <i class="fa-solid fa-hat-cowboy"></i>T(HAT) GROUP</div>
-        <ul class="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/works">Works</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
+   <nav class="navbar">
+    <div class="logo">
+        <a href="/">
+            <img src="{{ url_for('static', filename='image/that.png') }}" 
+                 alt="T(HAT) Logo"
+                 style="height: 42px; vertical-align: middle;">
+        </a>
+    </div>
+    <ul class="nav-list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/works">Works</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
     </nav>
-        </div>
-    </section>
-
 
     <main class="container">
         {% block content %}{% endblock %}
