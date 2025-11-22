@@ -4,42 +4,32 @@
 <section class="tree-section">
   <div class="tree-box">
     <h1 class="gradient-text">Binary Tree</h1>
-    <p class="tree-subtitle">Add nodes to your binary tree 🚀</p>
 
-    <form method="POST" class="tree-form">
-      <div class="form-group">
-        <label for="value">Node Value:</label>
-        <input type="text" id="value" name="value" placeholder="Enter node value..." required>
-      </div>
+    <!-- Display message -->
+    {% if message %}
+      <div class="message-box">{{ message }}</div>
+    {% endif %}
 
-      <div class="form-group">
-        <label for="parent">Parent Node (leave empty to add root):</label>
-        <input type="text" id="parent" name="parent" placeholder="Parent node value...">
-      </div>
+    <form method="POST">
+      <input type="text" name="value" placeholder="Enter node value" required>
 
-      <div class="form-group">
-        <label for="side">Side:</label>
-        <select id="side" name="side">
+      {% if root_exists %}
+        <input type="text" name="parent" placeholder="Parent node value" required>
+        <select name="side" required>
           <option value="left">Left</option>
           <option value="right">Right</option>
         </select>
-      </div>
+      {% else %}
+        <p>Please enter the <strong>root node</strong> first.</p>
+      {% endif %}
 
-      <button type="submit" class="btn-primary">Add Node</button>
+      <button type="submit">Add Node</button>
     </form>
 
-    {% if message %}
-      <div class="tree-message">{{ message }}</div>
-    {% endif %}
-
-
+    <!-- Optional: show tree structure as JSON for now -->
     <div class="tree-display">
       <h2>Current Tree:</h2>
-      {% if tree %}
-        <pre>{{ tree | tojson(indent=2) }}</pre>
-      {% else %}
-        <p class="empty">The tree is empty. Add a root node first.</p>
-      {% endif %}
+      <pre>{{ tree | tojson(indent=2) }}</pre>
     </div>
   </div>
 </section>
