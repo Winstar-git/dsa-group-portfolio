@@ -120,34 +120,3 @@ class BinaryTree:
                 parent_queue.append(parent.right)
 
         return "Item not found in the tree"
-
-
-
-# Example usage
-if __name__ == "__main__":
-   
-    tree = BinaryTree("R")
-    
-    # Insert nodes
-    tree.insert_left(tree.root, "A")
-    tree.insert_right(tree.root, "B")
-    tree.insert_left(tree.root.left, "C")
-    tree.insert_right(tree.root.left, "D")
-    tree.insert_left(tree.root.right, "E")
-    tree.insert_right(tree.root.right, "F")
-    tree.insert_left(tree.root.right.right, "G")
-    
-    print()
-
-    print("Preorder traversal: " + tree.preorder_traversal(tree.root,""))
-    ##tree.preorder_traversal(tree.root,"")
-    print("\n\nInorder traversal: " + tree.inorder_traversal(tree.root,""))
-    # tree.inorder_traversal(tree.root)
-    print("\n\nPostorder traversal: " + tree.postorder_traversal(tree.root,""))
-    # tree.postorder_traversal(tree.root)
-    print("\n\nSearch for F: " + str(tree.search(tree.root, "F")))
-    # Search for F in the binary tree
-    print("\n\nDelete A: " + str(tree.delete_node(tree.root, "A")))
-    # Delete A from the Binary tree
-    print("\n\nPostorder traversal: " + tree.postorder_traversal(tree.root,""))
-    # Show the binary tree after A was deleted
