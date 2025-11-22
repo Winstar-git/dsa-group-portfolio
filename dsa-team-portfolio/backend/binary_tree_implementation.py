@@ -58,3 +58,11 @@ class BinaryTreeManager:
             return f"Node '{value}' found in the tree."
         else:
             return f"Node '{value}' not found in the tree."
+        
+    def replace_node(self, old_value, new_value):
+        """Replace the value of a node with a new value."""
+        node = self.find_node(old_value)
+        if not node:
+            return f"Node '{old_value}' not found."
+        node.value = new_value
+        return f"Node '{old_value}' replaced with '{new_value}'."

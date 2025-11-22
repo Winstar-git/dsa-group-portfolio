@@ -90,14 +90,20 @@ def tree_page():
             else:
                 message = tree_manager.search_node(value)
 
+        elif "replace_node" in request.form:
+            old_value = request.form.get("old_value").strip()
+            new_value = request.form.get("new_value_replace").strip()
+            if not old_value or not new_value:
+                message = "Please provide both old and new values."
+            else:
+                message = tree_manager.replace_node(old_value, new_value)
+
     return render_template(
         "tree.html",
         tree=tree_manager.tree.root,
         message=message,
         root_exists=root_exists
     )
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

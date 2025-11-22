@@ -4,7 +4,7 @@
 <section class="tree-section">
   <div class="tree-box">
     <h1 class="gradient-text">Binary Tree Implementation</h1>
-
+    
     {% if message %}
       <div class="tree-message">{{ message }}</div>
     {% endif %}
@@ -19,8 +19,9 @@
         <button type="submit" name="add_root" class="btn-primary">Add Root</button>
       </form>
     {% else %}
-      <!-- Add Node Form -->
+      <!-- Add node after root exists -->
       <form method="POST" class="tree-form">
+        <h3>Add Node</h3>
         <div class="form-group">
           <label for="parent_value">Parent Node:</label>
           <input type="text" id="parent_value" name="parent_value" placeholder="Parent node..." required>
@@ -39,22 +40,38 @@
         <button type="submit" name="add_node" class="btn-primary">Add Node</button>
       </form>
 
-      <!-- Delete Node Form -->
+      <!-- Delete Node -->
       <form method="POST" class="tree-form">
+        <h3>Delete Node</h3>
         <div class="form-group">
-          <label for="delete_value">Delete Node:</label>
-          <input type="text" id="delete_value" name="delete_value" placeholder="Node value..." required>
+          <label for="delete_value">Node Value to Delete:</label>
+          <input type="text" id="delete_value" name="delete_value" placeholder="Value to delete..." required>
         </div>
-        <button type="submit" name="delete_node" class="btn-primary">Delete Node</button>
+        <button type="submit" name="delete_node" class="btn-danger">Delete Node</button>
       </form>
 
-      <!-- Search Node Form -->
+      <!-- Search Node -->
       <form method="POST" class="tree-form">
+        <h3>Search Node</h3>
         <div class="form-group">
-          <label for="search_value">Search Node:</label>
-          <input type="text" id="search_value" name="search_value" placeholder="Node value..." required>
+          <label for="search_value">Node Value to Search:</label>
+          <input type="text" id="search_value" name="search_value" placeholder="Value to search..." required>
         </div>
-        <button type="submit" name="search_node" class="btn-primary">Search Node</button>
+        <button type="submit" name="search_node" class="btn-secondary">Search Node</button>
+      </form>
+
+      <!-- Replace Node -->
+      <form method="POST" class="tree-form">
+        <h3>Replace Node</h3>
+        <div class="form-group">
+          <label for="old_value">Current Node Value:</label>
+          <input type="text" id="old_value" name="old_value" placeholder="Old value..." required>
+        </div>
+        <div class="form-group">
+          <label for="new_value_replace">New Node Value:</label>
+          <input type="text" id="new_value_replace" name="new_value_replace" placeholder="New value..." required>
+        </div>
+        <button type="submit" name="replace_node" class="btn-warning">Replace Node</button>
       </form>
     {% endif %}
 
