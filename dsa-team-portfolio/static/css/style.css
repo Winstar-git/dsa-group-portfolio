@@ -796,6 +796,8 @@ body {
     color: #d0d8e8;
     line-height: 1.2;  
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 5px 10px;
     border-radius: 6px;
