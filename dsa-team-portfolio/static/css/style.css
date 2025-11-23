@@ -794,12 +794,14 @@ body {
 .tree-box select {
     background: rgba(255, 255, 255, 0.08);
     color: #d0d8e8;
+    display: block;
     border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 5px 10px;
     border-radius: 8px;
     outline: none;
     font-size: 1rem;
     transition: box-shadow 0.3s ease, border 0.3s ease;
+    box-sizing: border-box;
 
 
 }
