@@ -802,6 +802,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   margin-left: 0px;
+  margin-top: 10px;
 }
 
 .btn-primary-tree:hover,
