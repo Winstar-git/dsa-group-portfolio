@@ -12,7 +12,7 @@ class BinaryTreeManager:
             self.tree.root = Node(new_value)
             return f"Root node '{new_value}' added."
 
-        parent_node = self.find_node(parent_value)
+        parent_node = self.find_node(self.tree.root, parent_value)
         if not parent_node:
             return f"Parent node '{parent_value}' not found."
 
@@ -22,43 +22,48 @@ class BinaryTreeManager:
                 return f"Node '{new_value}' added to left of '{parent_value}'."
             else:
                 return f"Left child of '{parent_value}' already exists."
+
         elif side.lower() == "right":
             if parent_node.right is None:
                 self.tree.insert_right(parent_node, new_value)
                 return f"Node '{new_value}' added to right of '{parent_value}'."
             else:
                 return f"Right child of '{parent_value}' already exists."
-        else:
-            return "Side must be 'left' or 'right'."
 
-    def find_node(self, value):
-        """Return node object with the given value."""
-        items = self.tree.inorder_traversal(self.tree.root, "")
-        if items:
-            for item in items:
-                if item == value:
-                    return item
+        return "Side must be 'left' or 'right'."
+
+    def find_node(self, current, value):
+        """Find a node using inorder traversal (left, root, right)."""
+        if current is None:
             return None
-        return None
+
+        # Search left subtree
+        found = self.find_node(current.left, value)
+        if found:
+            return found
+
+        # Check current node
+        if current.value == value:
+            return current
+
+        # Search right subtree
+        return self.find_node(current.right, value)
 
     def delete_node_by_value(self, value):
-        """Delete a node by value and return a message."""
         if not self.tree.root:
             return "Tree is empty."
-        msg = self.tree.delete_node(self.tree.root, value)
-        return msg
+        return self.tree.delete_node(self.tree.root, value)
 
     def search_node(self, value):
-        """Search for a node by value and return a message."""
-        if self.tree.search(self.tree.root, value):
+        if self.find_node(self.tree.root, value):
             return f"Node '{value}' found in the tree."
-        else:
-            return f"Node '{value}' not found in the tree."
-        
+        return f"Node '{value}' not found in the tree."
+
     def replace_node(self, old_value, new_value):
-        """Replace the value of a node with a new value."""
-        node = self.find_node(old_value)
+        """Replace the value of a node using traversal search."""
+        node = self.find_node(self.tree.root, old_value)
         if not node:
             return f"Node '{old_value}' not found."
+
         node.value = new_value
         return f"Node '{old_value}' replaced with '{new_value}'."

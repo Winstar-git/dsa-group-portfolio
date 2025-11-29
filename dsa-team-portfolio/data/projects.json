@@ -5,8 +5,8 @@
     "url": "/queue"
   },
   {
-    "title": "Binary Search Tree Implementation",
-    "description": "An implementation of a binary search tree (BST) that supports insertion, deletion, search and replace operations. The BST interface lets you add nodes, delete nodes, search values, and run traversals.",
+    "title": "Binary Tree Implementation",
+    "description": "This project is a simple web-based application that allows users to create, edit, search, and visualize a Binary Tree interactively.",
     "url": "/tree"
   }
 ]
