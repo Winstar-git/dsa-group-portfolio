@@ -845,13 +845,14 @@ body {
 .tree-diagram {
   text-align: center;
   margin-top: 20px;
+  display: flex;
 
 }
 
 .tree-diagram ul {
   padding-top:20px;
   position: relative;
-  display:inline-block;
+  display:flex;
   
 }
 
