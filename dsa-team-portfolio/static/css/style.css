@@ -842,41 +842,30 @@ body {
   margin-right: 5px;
 }
 
-
 .tree-diagram {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  display:flex;
+  justify-content: center;
+  margin-top:20px;
 }
-
 
 .tree-diagram ul {
-    padding-top: 20px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+  padding-top:20px;
+  position: relative;
+  display:flex;
+  justify-content: center;
 }
 
 .tree-diagram li {
-    list-style-type: none;
-    text-align: center;
-    position: relative;
-    padding: 20px 5px 0 5px;
-}
+  list-style:none;
+  text-align:center;
+  position:relative;
+  padding: 20px 10px 0 10px;
 
-/* --- CONNECTOR LINES --- */
-.tree-diagram li {
-    position: relative;
-    padding: 20px 5px 0 5px;
-    text-align: center;
-    list-style-type: none;
-    display: inline-block;
 }
 
 .tree-diagram li::before,
 .tree-diagram li::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     width: 50%;
@@ -885,28 +874,39 @@ body {
 }
 
 .tree-diagram li::before {
-    left: -50%;
-    border-right: 2px solid #7fb5ff;
+    left: 0;
+    border-left: 2px solid #7fb5ff;
 }
 
 .tree-diagram li::after {
-    right: -50%;
-    border-left: 2px solid #7fb5ff;
+    right: 0;
+    border-right: 2px solid #7fb5ff;
 }
 
-.tree-diagram li:only-child::before,
-.tree-diagram li:only-child::after {
-    display: none;
+.tree-diagram > ul > li::before,
+.tree-diagram > ul > li::after {
+    border: none;
 }
 
 .tree-diagram ul ul::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: -20px;
+    top: 0;
     left: 50%;
-    border-left: 2px solid #7fb5ff;
+    transform: translateY(-20px);
     height: 20px;
+    border-left: 2px solid #7fb5ff;
 }
+
+
+.empty {
+    visibility: hidden;
+}
+.empty::before,
+.empty::after {
+    display: none;
+}
+
 .tree-node {
     padding: 10px 16px;
     background: #4f9dff;
