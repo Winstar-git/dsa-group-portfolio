@@ -844,24 +844,27 @@ body {
 
 .tree-diagram {
   text-align: center;
-  display:flex;
+  display: block;     
   margin-top: 20px;
+  width: 100%;
+}
 
+.tree-diagram ul {
+  padding-top: 20px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
 }
 
 .tree-diagram li {
   list-style: none;
-  position:relative;
-  padding-top: 40px;
-  display: flex;
   text-align: center;
-  vertical-align: top;
-  margin: 0 20px;
-
-
+  position: relative;
+  padding: 20px 5px;
+  display: inline-block;  
+  vertical-align: top;  
 }
 
-.
 .empty {
     visibility: hidden;
 
