@@ -842,50 +842,84 @@ body {
   margin-right: 5px;
 }
 
-tree-diagram li::before,
-.tree-diagram li::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  border-top: 2px solid #7fb5ff;
-  width: 50%;
-  height: 40px;  
+.tree-diagram {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-.tree-diagram li::before {
-  left: -50%;
-  border-right: 2px solid #7fb5ff;
-}
 
-.tree-diagram li::after {
-  right: -50%;
-  border-left: 2px solid #7fb5ff;
-}
-
-.tree-diagram ul ul {
-  margin-top: 0px;  
+.tree-diagram ul {
+    padding-top: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .tree-diagram li {
-  padding: 40px 5px 0 5px;  
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+    padding: 20px 5px 0 5px;
 }
 
-.tree-diagram ul {
-  padding-top: 20px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;  
+/* --- CONNECTOR LINES --- */
+.tree-diagram li::before,
+.tree-diagram li::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 20px;
+    border-top: 2px solid #7fb5ff;
 }
+
+.tree-diagram li::before {
+    left: -50%;
+    border-right: 2px solid #7fb5ff;
+}
+
+.tree-diagram li::after {
+    right: -50%;
+    border-left: 2px solid #7fb5ff;
+}
+
+
+.tree-diagram > ul > li::before,
+.tree-diagram > ul > li::after {
+    border: none;
+}
+
+
+.tree-diagram ul ul li:first-child::before {
+    border: none; 
+}
+.tree-diagram ul ul li:last-child::after {
+    border: none; 
+}
+
+
+.tree-diagram .empty {
+    visibility: hidden;
+    width: 60px;
+    height: 20px;
+}
+
+.tree-diagram .empty::before,
+.tree-diagram .empty::after {
+    display: none;
+}
+
 
 .tree-node {
-  padding: 10px 16px;
-  background: #4f9dff;
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  display: inline-block;
-  box-shadow: 0 0 10px rgba(79, 157, 255, 0.5);
-  min-width: 50px;  
-  text-align: center;
+    padding: 10px 16px;
+    background: #4f9dff;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(79, 157, 255, 0.5);
+    min-width: 50px;
+    display: inline-block;
+    text-align: center;
 }
