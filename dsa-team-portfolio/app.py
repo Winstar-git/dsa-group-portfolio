@@ -97,7 +97,7 @@ def tree_page():
             if not old_value or not new_value:
                 message = "Please provide both old and new values."
             else:
-                message = tree_manager.replace_node(old_value, new_value)
+                    message = tree_manager.replace_node(old_value, new_value)
 
     return render_template(
         "tree.html",
@@ -142,7 +142,7 @@ def dictionary_page():
             words = dict_search.get_all_words()
 
     return render_template(
-        "dictionary.html",
+        "bst.html",
         result=result,
         message=message,
         words=words
