@@ -844,7 +844,7 @@ body {
 
 
 .tree-diagram {
-    display: block;
+    display: flex;
     justify-content: center;
     margin-top: 20px;
 }
@@ -852,9 +852,9 @@ body {
 .tree-diagram ul {
     padding-top: 20px;
     position: relative;
-    display: flex;
+    display: block;
     justify-content: center;
-    align-items: flex-start;
+    
 }
 
 .tree-diagram li {
@@ -862,6 +862,7 @@ body {
     text-align: center;
     position: relative;
     padding: 20px 5px 0 5px;
+    display:inline-block;
 }
 
 
