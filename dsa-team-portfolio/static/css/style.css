@@ -866,35 +866,30 @@ body {
 }
 
 /* --- CONNECTOR LINES --- */
-.tree-diagram li::before,
-.tree-diagram li::after {
-    content: "";
-    position: absolute;
-    top: 25px;
-    width: 50%;
-    height: 0;
-    border-top: 2px solid #7fb5ff;
-}
-
 .tree-diagram li::before {
-    left: -50%;
-    border-right: 2px solid #7fb5ff;
-}
-
-.tree-diagram li::after {
-    right: -50%;
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 0;
+    height: 20px;
     border-left: 2px solid #7fb5ff;
 }
 
 
-.tree-diagram > ul > li::before,
-.tree-diagram > ul > li::after {
-    border: none;
+.tree-diagram li::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -50%;
+    width: 100%;
+    border-top: 2px solid #7fb5ff;
 }
 
-
-
-
+.tree-diagram .empty::before,
+.tree-diagram .empty::after {
+    display: none;
+}
 
 .tree-diagram .empty {
     visibility: hidden;
@@ -906,7 +901,6 @@ body {
 .tree-diagram .empty::after {
     display: none;
 }
-
 
 .tree-node {
     padding: 10px 16px;
