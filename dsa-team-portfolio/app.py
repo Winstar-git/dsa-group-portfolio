@@ -142,7 +142,7 @@ def dictionary_page():
             words = dict_search.get_all_words()
 
     return render_template(
-        "bst.html",
+        "dict_search.html",
         result=result,
         message=message,
         words=words
