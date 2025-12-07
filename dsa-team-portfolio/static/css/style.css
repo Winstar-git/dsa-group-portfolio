@@ -842,6 +842,7 @@ body {
   margin-right: 5px;
 }
 
+
 .tree-diagram {
     display: flex;
     justify-content: center;
@@ -892,12 +893,7 @@ body {
 }
 
 
-.tree-diagram ul ul li:first-child::before {
-    border: none; 
-}
-.tree-diagram ul ul li:last-child::after {
-    border: none; 
-}
+
 
 
 .tree-diagram .empty {
