@@ -866,42 +866,47 @@ body {
 }
 
 /* --- CONNECTOR LINES --- */
+.tree-diagram li {
+    position: relative;
+    padding: 20px 5px 0 5px;
+    text-align: center;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.tree-diagram li::before,
+.tree-diagram li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 20px;
+    border-top: 2px solid #7fb5ff;
+}
+
 .tree-diagram li::before {
+    left: -50%;
+    border-right: 2px solid #7fb5ff;
+}
+
+.tree-diagram li::after {
+    right: -50%;
+    border-left: 2px solid #7fb5ff;
+}
+
+.tree-diagram li:only-child::before,
+.tree-diagram li:only-child::after {
+    display: none;
+}
+
+.tree-diagram ul ul::before {
     content: '';
     position: absolute;
     top: -20px;
     left: 50%;
-    width: 0;
-    height: 20px;
     border-left: 2px solid #7fb5ff;
-}
-
-
-.tree-diagram li::after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -50%;
-    width: 100%;
-    border-top: 2px solid #7fb5ff;
-}
-
-.tree-diagram .empty::before,
-.tree-diagram .empty::after {
-    display: none;
-}
-
-.tree-diagram .empty {
-    visibility: hidden;
-    width: 60px;
     height: 20px;
 }
-
-.tree-diagram .empty::before,
-.tree-diagram .empty::after {
-    display: none;
-}
-
 .tree-node {
     padding: 10px 16px;
     background: #4f9dff;
