@@ -97,7 +97,6 @@
         </ul>
         {% endif %}
     </li>
-</ul>
 {% endmacro %}
 
 <!--Visual Tree-->
@@ -105,9 +104,11 @@
   <div class="tree-display">
     <h2>Current Tree:</h2>
     <div class="tree-diagram">
+     <ul>
       {{ render_node(tree) }}
+     </ul>
     </div>
   </div>
 {% endif %}
-
+</section>
 {% endblock %}
