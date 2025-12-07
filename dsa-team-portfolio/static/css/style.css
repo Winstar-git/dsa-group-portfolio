@@ -844,17 +844,15 @@ body {
 
 
 .tree-diagram {
-    display: flex;
-    justify-content: center;
+    text-align:center;
     margin-top: 20px;
 }
 
 .tree-diagram ul {
     padding-top: 20px;
     position: relative;
-    display: table;
-    justify-content: center;
-    border-spacing: 0;
+    text-align: center;
+    padding-left: 0;
     
 }
 
@@ -863,7 +861,7 @@ body {
     text-align: center;
     position: relative;
     padding: 20px 5px 0 5px;
-    display:table-cell;
+    display:inline-block;
     vertical-align:top;
     
 }
