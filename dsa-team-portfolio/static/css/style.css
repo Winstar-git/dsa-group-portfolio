@@ -852,15 +852,15 @@ body {
 .tree-diagram ul {
   padding-top: 20px;
   position: relative;
-  display: block;
-  margin: 0 auto;
+  display: inline-block;
+  text-align:center;
 }
 
 .tree-diagram li {
   list-style: none;
   text-align: center;
   position: relative;
-  padding: 20px 5px;
+  padding: 20px 10px 0;
   display: inline-block;  
   vertical-align: top;  
 }
