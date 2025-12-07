@@ -844,7 +844,7 @@ body {
 
 
 .tree-diagram {
-    display: flex;
+    display: block;
     justify-content: center;
     margin-top: 20px;
 }
