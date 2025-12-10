@@ -51,6 +51,27 @@
       <button type="submit" class="btn-primary-tree">View Words</button>
     </form>
 
+    <!-- Get maximum value -->
+    <form method="POST" action="/dict_search" class="tree-form">
+      <h3>Get maximum value</h3>
+      <input type="hidden" name="action" value="get_max">
+      <button type="submit" class="btn-primary-tree">Get max</button>
+    </form>
+
+    <!-- Get minimum value -->
+    <form method="POST" action="/dict_search" class="tree-form">
+      <h3>Get minimum value</h3>
+      <input type="hidden" name="action" value="get_min">
+      <button type="submit" class="btn-primary-tree">Get min</button>
+    </form>
+
+    <!-- Delete all -->
+    <form method="POST" action="/dict_search" class="tree-form">
+      <h3>Delete all nodes</h3>
+      <input type="hidden" name="action" value="delete_all">
+      <button type="submit" class="btn-primary-tree">Delete all nodes</button>
+    </form>
+
     <!-- Display Results -->
     {% macro render_node(node) %}
     <ul>

@@ -1,4 +1,4 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 try:
 	from .binary_search_tree import BinarySearchTree
 except ImportError:
@@ -41,6 +41,20 @@ class DictionarySearch:
 		if not traversal_str:
 			return []
 		return traversal_str.strip().split()
+	
+	def delete_all(self) -> str:
+		"""Deletes all words from the dictionary by resetting the BST root."""
+		self.bst.root = None
+		return "All words deleted successfully. The dictionary is now empty."
+
+	def get_max_word(self) -> Optional[str]:
+		"""Returns the maximum word in the dictionary. Returns None if the dictionary is empty."""
+		return self.bst.get_max_value(self.bst.root)
+
+	def get_min_word(self) -> Optional[str]:
+		"""Returns the minimum word (lexicographically smallest) in the dictionary. 
+		Returns None if the dictionary is empty."""
+		return self.bst.get_min_value(self.bst.root)
 
 __all__ = ["DictionarySearch"]
 
