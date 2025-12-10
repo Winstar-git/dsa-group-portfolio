@@ -81,6 +81,7 @@
       </div>
     </div>
 
+    <!-- Search Result -->
     {% if result %}
       <div class="tree-display">
         <h2>Result</h2>
@@ -106,11 +107,7 @@
     </div>
     {% endif %}
 
-    {% if message %}
-      <div class="tree-display">
-        <p>{{ message }}</p>
-      </div>
-    {% endif %}
+    {# message already shown near the top; no duplicate display here #}
 
   </div>
 </section>
