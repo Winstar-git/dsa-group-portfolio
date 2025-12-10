@@ -150,14 +150,6 @@ def dictionary_page():
         elif action == "delete_all":
             message = dict_search.delete_all()
 
-        #Get maximum
-        elif action == "get_max":
-            message = f"The maximum value is {dict_search.get_max_word()}"
-
-        #Get minimum
-        elif action == "get_min":
-            message = f"The minimum value is {dict_search.get_min_word()}"
-
     return render_template(
         "dict_search.html",
         result=result,
