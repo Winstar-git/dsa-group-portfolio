@@ -4,11 +4,12 @@ A Flask web app where we showcase our data structures projects. The main feature
 
 ## 📖 What is this?
 
-We built this as a school project to learn about **queues**, **linked lists**, and **web development** at the same time. The app has:
+We built this as a school project to learn about **queues**, **linked lists**, **binary trees** and **web development** at the same time. The app has:
 
 - A **custom queue implementation** (doubly-ended) that we wrote from scratch
 - A **live demo page** where you can add customers, mark them as priority, and serve them in order
 - A **team page** so everyone knows who to contact
+- A **tree operations** the app includes its own Binary Tree Creator with support for searching, deleting nodes, and traversals, plus extended Binary Search Tree logic for finding values, maximum nodes, and calculating heights.
 
 Basically: learn DSA + build a real web app = this project.
 
