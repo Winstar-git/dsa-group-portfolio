@@ -166,9 +166,10 @@ def graph_page():
     if request.method == "POST":
         start = request.form.get("start_station")
         end = request.form.get("end_station")
+        search_type = request.form.get("search_type")
 
         # result will be either the list or the "Invalid station" string
-        result = route_search.get_route(start, end)
+        result = route_search.get_route(start, end, method=search_type)
 
         if isinstance(result, str):
             message = result

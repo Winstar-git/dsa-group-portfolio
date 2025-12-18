@@ -17,7 +17,15 @@
         <input type="text" id="end_station" name="end_station" placeholder="Enter destination station..." required>
       </div>
 
-      <button type="submit" name="get_route" class="btn-primary">Find Fastest Route</button>
+      <div class="form-group">
+        <label for="search_type">Search Strategy:</label>
+        <select id="search_type" name="search_type">
+          <option value="BFS">Shortest Path (BFS)</option>
+          <option value="DFS">Alternative Path (DFS)</option>
+        </select>
+      </div>
+
+      <button type="submit" name="get_route" class="btn-primary">Find Route</button>
     </form>
 
     <div class="queue-line">
@@ -30,12 +38,12 @@
             <li class="queue-item">
               {{ station }}
               {% if not loop.last %}
-                <span class="arrow">↓</span>
+                <span class="arrow" style="display: block; text-align: center; margin: 5px 0;">↓</span>
               {% endif %}
             </li>
           {% endfor %}
         {% else %}
-          <li class="queue-item empty">Enter stations to calculate the shortest path</li>
+          <li class="queue-item empty">Enter stations and select a strategy to see the path</li>
         {% endif %}
       </ul>
     </div>

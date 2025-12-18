@@ -19,7 +19,9 @@ class MetroMap:
             self.graph.add_edge(a, b)            
             self.graph.add_edge(b, a)
 
-    def get_route(self, start, end):
+    def get_route(self, start, end, method):
         if start not in self.graph.vertices or end not in self.graph.vertices:
             return "Station not found."
+        if method == "DFS":
+            return self.graph.dfs(start, end)
         return self.graph.bfs(start, end)
