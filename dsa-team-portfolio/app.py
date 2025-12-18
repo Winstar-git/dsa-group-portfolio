@@ -160,6 +160,13 @@ def dictionary_page():
 
 @app.route('/graph', methods=["GET", "POST"])
 def graph_page():
+    data_file = os.path.join(app.root_path, 'data', 'stations.json')
+    try:
+        with open(data_file, 'r', encoding='utf-8') as f:
+            stations = json.load(f)
+    except Exception:
+        stations = []
+
     route = None
     message = None
 
@@ -176,7 +183,7 @@ def graph_page():
         else:
             route = result
     
-    return render_template("graph.html", route=route, message=message)
+    return render_template("graph.html", route=route, message=message, stations=stations)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000)) 

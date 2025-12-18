@@ -4,17 +4,39 @@
 <section class="queue-section">
   <div class="queue-box">
     <h1 class="gradient-text">Metro Route Finder</h1>
-    <p class="queue-subtitle">Navigate the city with efficiency and ease 🚇</p>
+    <p class="queue-subtitle">Select your stations from the list below 🚇</p>
 
     <form method="POST" class="queue-form">
       <div class="form-group">
         <label for="start_station">Starting Station:</label>
-        <input type="text" id="start_station" name="start_station" placeholder="Enter origin station..." required>
+        <select id="start_station" name="start_station" required>
+          <option value="" disabled selected>Select origin...</option>
+          {% for line_name, line_stations in stations.items() %}
+            {% if line_name != 'interchanges' %}
+              <optgroup label="{{ line_name | upper }}">
+                {% for s in line_stations %}
+                  <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+              </optgroup>
+            {% endif %}
+          {% endfor %}
+        </select>
       </div>
 
       <div class="form-group">
         <label for="end_station">Destination Station:</label>
-        <input type="text" id="end_station" name="end_station" placeholder="Enter destination station..." required>
+        <select id="end_station" name="end_station" required>
+          <option value="" disabled selected>Select destination...</option>
+          {% for line_name, line_stations in stations.items() %}
+            {% if line_name != 'interchanges' %}
+              <optgroup label="{{ line_name | upper }}">
+                {% for s in line_stations %}
+                  <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+              </optgroup>
+            {% endif %}
+          {% endfor %}
+        </select>
       </div>
 
       <div class="form-group">
@@ -29,7 +51,7 @@
     </form>
 
     <div class="queue-line">
-      <h2>Your Route:</h2>
+      <h2>Result:</h2>
       <ul>
         {% if message %}
           <li class="queue-item error" style="color: #ff4d4d;">{{ message }}</li>
@@ -43,7 +65,7 @@
             </li>
           {% endfor %}
         {% else %}
-          <li class="queue-item empty">Enter stations and select a strategy to see the path</li>
+          <li class="queue-item empty">Select your stations and click "Find Route"</li>
         {% endif %}
       </ul>
     </div>
