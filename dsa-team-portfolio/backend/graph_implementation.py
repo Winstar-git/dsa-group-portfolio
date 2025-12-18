@@ -1,5 +1,5 @@
 from .graph_detail import Graph
-from .stations import lrt1, lrt2, mrt3, interchanges
+import json
 
 class MetroMap:
     def __init__(self):
@@ -7,6 +7,15 @@ class MetroMap:
         self._build_network()
 
     def _build_network(self):
+
+        with open('dsa-team-portfolio/data/stations.json', 'r') as f:
+            data = json.load(f)
+            
+        lrt1 = data["lrt1"]
+        lrt2 = data["lrt2"]
+        mrt3 = data["mrt3"]
+        interchanges = data["interchanges"]
+
         for station in lrt1 + lrt2 + mrt3:
             self.graph.add_vertex(station)
 
