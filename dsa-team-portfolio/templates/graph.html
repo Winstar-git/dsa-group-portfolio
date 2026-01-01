@@ -1,74 +1,97 @@
 {% extends "base.html" %}
-
 {% block content %}
+
 <section class="queue-section">
-  <div class="queue-box">
-    <h1 class="gradient-text">Metro Route Finder</h1>
-    <p class="queue-subtitle">Select your stations from the list below 🚇</p>
+  <div class="queue-box" style="max-width: 95%; width: 1600px;">
+    
+    <h1 class="gradient-text" style="margin-bottom: 40px;">Metro Route Finder</h1>
 
-    <form method="POST" class="queue-form">
-      <div class="form-group">
-        <label for="start_station">Starting Station:</label>
-        <select id="start_station" name="start_station" required>
-          <option value="" disabled selected>Select origin...</option>
-          {% for line_name, line_stations in stations.items() %}
-            {% if line_name != 'interchanges' %}
-              <optgroup label="{{ line_name | upper }}">
-                {% for s in line_stations %}
-                  <option value="{{ s }}">{{ s }}</option>
-                {% endfor %}
-              </optgroup>
+    <div class="finder-grid-layout">
+        
+        <div class="metro-map-container">
+            {% for line_name, line_stations in stations.items() %}
+                {% if line_name != 'interchanges' %}
+                
+                    <div class="metro-row {% if line_name == 'LRT 2' %}row-lrt2{% elif line_name == 'MRT 3' %}row-mrt3{% endif %}">
+                        
+                        <div class="metro-label">{{ line_name }}</div>
+                        
+                        {% for s in line_stations %}
+                            <div class="station-wrapper">
+                                <button type="button" class="tree-node station-node" data-name="{{ s }}">
+                                    {{ s }}
+                                </button>
+
+                                {% if line_name == 'LRT 1' and s == 'Doroteo Jose' %}
+                                   <div class="arrow-v arrow-down">↓</div>
+                                {% endif %}
+                                {% if line_name == 'LRT 2' and s == 'Araneta Center-Cubao' %}
+                                   <div class="arrow-v arrow-down">↓</div>
+                                {% endif %}
+                                {% if line_name == 'MRT 3' and s == 'Taft Avenue' %}
+                                   <div class="arrow-v arrow-up">↑</div>
+                                {% endif %}
+                            </div>
+
+                            {% if not loop.last %}
+                                <span class="arrow-h">→</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <aside class="control-panel">
+            <h3 style="margin-bottom: 20px; color: #fff;">Trip Details</h3>
+            
+            <div class="selection-box">
+                <span class="selection-label">Starting Station</span>
+                <span id="start_display" class="selection-value" style="border-color: #00d4ff; color: #00d4ff;">None Selected</span>
+                
+                <span class="selection-label">Destination</span>
+                <span id="end_display" class="selection-value" style="border-color: #004bff; color: #004bff;">None Selected</span>
+            </div>
+
+            <form method="POST" id="routeForm">
+                <input type="hidden" name="start_station" id="start_input">
+                <input type="hidden" name="end_station" id="end_input">
+                
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="search_type" style="display: block; margin-bottom: 8px; font-size: 0.9rem;">Route Preference:</label>
+                    <select id="search_type" name="search_type" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid #4f9dff;">
+                        <option value="BFS">Shortest Path</option>
+                        <option value="DFS">Alternative Path</option>
+                    </select>
+                </div>
+                
+                <button type="submit" name="get_route" class="btn-primary" style="width: 100%; justify-content: center;">
+                    Find Route 🚀
+                </button>
+            </form>
+
+            {% if message %}
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255, 77, 77, 0.2); border-radius: 8px; color: #ff9999; font-size: 0.9rem;">
+                    {{ message }}
+                </div>
+            {% elif route %}
+                <div style="margin-top: 30px;">
+                    <h4 style="color: #8abdff; margin-bottom: 15px;">Route Plan:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        {% for station in route %}
+                            <li style="display: flex; align-items: center; margin-bottom: 10px; font-size: 0.9rem;">
+                                <div style="width: 10px; height: 10px; background: #4f9dff; border-radius: 50%; margin-right: 10px;"></div>
+                                {{ station.name }}
+                            </li>
+                            {% if not loop.last %}
+                                <li style="padding-left: 4px; margin-bottom: 10px; color: #4f9dff;">│</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
-          {% endfor %}
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="end_station">Destination Station:</label>
-        <select id="end_station" name="end_station" required>
-          <option value="" disabled selected>Select destination...</option>
-          {% for line_name, line_stations in stations.items() %}
-            {% if line_name != 'interchanges' %}
-              <optgroup label="{{ line_name | upper }}">
-                {% for s in line_stations %}
-                  <option value="{{ s }}">{{ s }}</option>
-                {% endfor %}
-              </optgroup>
-            {% endif %}
-          {% endfor %}
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="search_type">Search Strategy:</label>
-        <select id="search_type" name="search_type">
-          <option value="BFS">Shortest Path (BFS)</option>
-          <option value="DFS">Alternative Path (DFS)</option>
-        </select>
-      </div>
-
-      <button type="submit" name="get_route" class="btn-primary">Find Route</button>
-    </form>
-
-    <div class="queue-line">
-      <h2>Result:</h2>
-      <ul>
-        {% if message %}
-          <li class="queue-item error" style="color: #ff4d4d;">{{ message }}</li>
-        {% elif route %}
-          {% for station in route %}
-            <li class="queue-item">
-              {{ station }}
-              {% if not loop.last %}
-                <span class="arrow" style="display: block; text-align: center; margin: 5px 0;">↓</span>
-              {% endif %}
-            </li>
-          {% endfor %}
-        {% else %}
-          <li class="queue-item empty">Select your stations and click "Find Route"</li>
-        {% endif %}
-      </ul>
+        </aside>
+        </div>
     </div>
-  </div>
 </section>
+<script src="{{ url_for('static', filename='js/metro-map.js') }}"></script>
 {% endblock %}
