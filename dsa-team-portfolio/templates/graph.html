@@ -1,97 +1,93 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="queue-section">
-  <div class="queue-box" style="max-width: 95%; width: 1600px;">
-    
-    <h1 class="gradient-text" style="margin-bottom: 40px;">Metro Route Finder</h1>
+<section class="cyber-metro-section">
+    <div class="cyber-container">
+        <div class="map-layout-wrapper">
+            
+            <div class="svg-map-area">
+                <svg id="metro-svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
 
-    <div class="finder-grid-layout">
-        
-        <div class="metro-map-container">
-            {% for line_name, line_stations in stations.items() %}
-                {% if line_name != 'interchanges' %}
-                
-                    <div class="metro-row {% if line_name == 'LRT 2' %}row-lrt2{% elif line_name == 'MRT 3' %}row-mrt3{% endif %}">
-                        
-                        <div class="metro-label">{{ line_name }}</div>
-                        
-                        {% for s in line_stations %}
-                            <div class="station-wrapper">
-                                <button type="button" class="tree-node station-node" data-name="{{ s }}">
-                                    {{ s }}
-                                </button>
+                    <g id="base-tracks">
+                        <path id="path-lrt1" class="track lrt1-track" d="M 250,50 L 250,700 Q 250,770 350,770" />
+                        <path id="path-lrt2" class="track lrt2-track" d="M 250,450 L 450,450 L 750,350 L 950,200" />
+                        <path id="path-mrt3" class="track mrt3-track" d="M 250,50 L 750,50 L 750,650 L 250,650" />
+                    </g>
 
-                                {% if line_name == 'LRT 1' and s == 'Doroteo Jose' %}
-                                   <div class="arrow-v arrow-down">↓</div>
-                                {% endif %}
-                                {% if line_name == 'LRT 2' and s == 'Araneta Center-Cubao' %}
-                                   <div class="arrow-v arrow-down">↓</div>
-                                {% endif %}
-                                {% if line_name == 'MRT 3' and s == 'Taft Avenue' %}
-                                   <div class="arrow-v arrow-up">↑</div>
-                                {% endif %}
-                            </div>
-
-                            {% if not loop.last %}
-                                <span class="arrow-h">→</span>
+                    <g id="stations-layer">
+                        {% for line_id, line_stations in stations.items() %}
+                            {% if line_id != 'interchanges' %}
+                                {% for s in line_stations %}
+                                <g class="station-node-group {{ line_id }}" data-name="{{ s }}" onclick="selectStation('{{ s }}', this)">
+                                    <circle class="station-dot" r="4.5" />
+                                    <text class="station-text">{{ s.split(' (')[0] }}</text>
+                                </g>
+                                {% endfor %}
                             {% endif %}
                         {% endfor %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <aside class="control-panel">
-            <h3 style="margin-bottom: 20px; color: #fff;">Trip Details</h3>
-            
-            <div class="selection-box">
-                <span class="selection-label">Starting Station</span>
-                <span id="start_display" class="selection-value" style="border-color: #00d4ff; color: #00d4ff;">None Selected</span>
-                
-                <span class="selection-label">Destination</span>
-                <span id="end_display" class="selection-value" style="border-color: #004bff; color: #004bff;">None Selected</span>
+                    </g>
+                </svg>
             </div>
 
-            <form method="POST" id="routeForm">
-                <input type="hidden" name="start_station" id="start_input">
-                <input type="hidden" name="end_station" id="end_input">
+            <aside class="cyber-panel">
+                <h3 class="panel-title">Trip Planner</h3>
                 
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label for="search_type" style="display: block; margin-bottom: 8px; font-size: 0.9rem;">Route Preference:</label>
-                    <select id="search_type" name="search_type" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid #4f9dff;">
-                        <option value="BFS">Shortest Path</option>
-                        <option value="DFS">Alternative Path</option>
-                    </select>
+                <div class="selection-box">
+                    <div class="input-display">
+                        <label>STARTING STATION</label>
+                        <div id="start_display" class="glow-text">--</div>
+                    </div>
+                    <div class="input-display">
+                        <label>TARGET DESTINATION</label>
+                        <div id="end_display" class="glow-text">--</div>
+                    </div>
                 </div>
-                
-                <button type="submit" name="get_route" class="btn-primary" style="width: 100%; justify-content: center;">
-                    Find Route 🚀
-                </button>
-            </form>
 
-            {% if message %}
-                <div style="margin-top: 20px; padding: 15px; background: rgba(255, 77, 77, 0.2); border-radius: 8px; color: #ff9999; font-size: 0.9rem;">
-                    {{ message }}
-                </div>
-            {% elif route %}
-                <div style="margin-top: 30px;">
-                    <h4 style="color: #8abdff; margin-bottom: 15px;">Route Plan:</h4>
-                    <ul style="list-style: none; padding: 0;">
+                <form method="POST" action="/graph" id="routeForm">
+                    <input type="hidden" name="start_station" id="start_input">
+                    <input type="hidden" name="end_station" id="end_input">
+                    <button type="submit" class="cyber-button">
+                        CALCULATE ROUTE 🚀
+                    </button>
+                </form>
+
+                {% if route %}
+                <div class="itinerary-results animate-up" style="margin-top: 25px;">
+                    <h4 class="panel-title" style="font-size: 0.7rem;">Itinerary</h4>
+                    <div class="path-visual">
                         {% for station in route %}
-                            <li style="display: flex; align-items: center; margin-bottom: 10px; font-size: 0.9rem;">
-                                <div style="width: 10px; height: 10px; background: #4f9dff; border-radius: 50%; margin-right: 10px;"></div>
-                                {{ station.name }}
-                            </li>
-                            {% if not loop.last %}
-                                <li style="padding-left: 4px; margin-bottom: 10px; color: #4f9dff;">│</li>
-                            {% endif %}
+                        <div class="path-step">
+                            <span class="step-dot {{ station.line|lower }}"></span>
+                            <span class="glow-text" style="font-size: 0.75rem;">{{ station.name }}</span>
+                        </div>
                         {% endfor %}
-                    </ul>
+                    </div>
+                    <button type="button" class="cyber-button secondary-reset" onclick="window.location.href='/graph'">
+                        CLEAR MAP
+                    </button>
                 </div>
-            {% endif %}
-        </aside>
+                {% endif %}
+            </aside>
         </div>
     </div>
 </section>
+
 <script src="{{ url_for('static', filename='js/metro-map.js') }}"></script>
+<script>
+    // This part runs AFTER the page reloads with route data
+    {% if route %}
+        const routeData = {{ route|map(attribute='name')|list|tojson }};
+        window.addEventListener('load', () => highlightRouteOnMap(routeData));
+    {% endif %}
+</script>
+
 {% endblock %}
