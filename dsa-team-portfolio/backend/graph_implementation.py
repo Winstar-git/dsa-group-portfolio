@@ -1,65 +1,59 @@
-import json
-import os
 from .graph_detail import Graph
+import json
 
 class MetroMap:
     def __init__(self):
         self.graph = Graph()
-        # Dictionary to map station names to their CSS-friendly line class
         self.station_to_line = {}
         self._build_network()
 
     def _build_network(self):
-        # 1. Absolute pathing to prevent 'Internal Server Errors'
-        base_path = os.path.dirname(os.path.dirname(__file__))
-        data_path = os.path.join(base_path, 'data', 'stations.json')
-        
-        try:
-            with open(data_path, 'r') as f:
-                data = json.load(f)
-        except FileNotFoundError:
-            # Fallback for different execution environments
-            with open('data/stations.json', 'r') as f:
-                data = json.load(f)
+        with open('dsa-team-portfolio/data/stations.json', 'r') as f:
+            data = json.load(f)
+            
+        lrt1 = data["lrt1"]
+        lrt2 = data["lrt2"]
+        mrt3 = data["mrt3"]
+        interchanges = data["interchanges"]
 
-        # 2. Populate Graph and Line Mapping
-        for line_key in ["lrt1", "lrt2", "mrt3"]:
-            stations = data[line_key]
-            for i in range(len(stations)):
-                s = stations[i]
-                self.graph.add_vertex(s)
-                # Store the line key for CSS class mapping (lrt1, lrt2, mrt3)
-                self.station_to_line[s] = line_key
-                
-                # Connect adjacent stations on the same track
-                if i > 0:
-                    self.graph.add_edge(stations[i-1], s)
+        # Build station → line lookup
+        for s in lrt1:
+            self.station_to_line[s] = "lrt1"
+        for s in lrt2:
+            self.station_to_line[s] = "lrt2"
+        for s in mrt3:
+            self.station_to_line[s] = "mrt3"
 
-        # 3. Connect Interchange Hubs (Crucial for line-switching)
-        # Bridges different line versions of the same station (e.g., Cubao LRT2 to Cubao MRT3)
-        for hub_list in data.get("interchanges", []):
-            for i in range(len(hub_list)):
-                for j in range(i + 1, len(hub_list)):
-                    self.graph.add_edge(hub_list[i], hub_list[j])
+        # Add all stations as vertices
+        for station in lrt1 + lrt2 + mrt3:
+            self.graph.add_vertex(station)
 
-    def find_route(self, start, end, method="BFS"):
-        """
-        Calculates the path and returns a list of station objects.
-        """
-        if method == "BFS":
-            raw_path = self.graph.bfs(start, end)
+        # Connect stations within the same line
+        for line in [lrt1, lrt2, mrt3]:
+            for i in range(len(line) - 1):
+                self.graph.add_edge(line[i], line[i + 1])
+                self.graph.add_edge(line[i + 1], line[i])
+
+        # Add interchange connections
+        for a, b in interchanges:
+            self.graph.add_edge(a, b)
+            self.graph.add_edge(b, a)
+
+    def get_route(self, start, end, method):
+        if start not in self.graph.vertices or end not in self.graph.vertices:
+            return "Station not found."
+
+        if method == "DFS":
+            path = self.graph.dfs(start, end)
         else:
-            raw_path = self.graph.dfs(start, end)
+            path = self.graph.bfs(start, end)
 
-        if not raw_path:
-            return None
-
-        # Convert raw string list into a list of dictionaries for the frontend
-        # This allows the HTML to use: {{ station.line }} for coloring
-        route = []
-        for station_name in raw_path:
-            route.append({
-                "name": station_name,
-                "line": self.station_to_line.get(station_name, "mrt3")
+        # Attach line info for UI rendering
+        route_with_lines = []
+        for station in path:
+            route_with_lines.append({
+                "name": station,
+                "line": self.station_to_line.get(station)
             })
-        return route
+
+        return route_with_lines
