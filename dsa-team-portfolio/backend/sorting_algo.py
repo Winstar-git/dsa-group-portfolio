@@ -1,5 +1,6 @@
 # Goal: Finish raw python code for sorting algorithms
 # Bubble sort
+print("Bubble Sort Steps:")
 class BubbleSort:
 
     def __init__(self, data):
@@ -35,13 +36,22 @@ class BubbleSort:
             "sorted": self.data
         }
 
-#numbers = [5, 3, 8, 4, 1]
-#sorter = BubbleSort(numbers)
-#result = sorter.sort()
-#print(result)
+numbers = [5, 3, 8, 4, 1]
+sorter = BubbleSort(numbers)
+result = sorter.sort()
+
+def format_array(array):
+    width = max(len(str(x)) for x in array)
+    return " | ".join(f"{x:>{width}}" for x in array)
+
+print("Original:", result["original"])
+for step in result["steps"]:
+    print(f"{step['action'].capitalize():<8} | Indices: {step['indices']} | {format_array(step['array'])}")
+print("Sorted:", result["sorted"])
 
 
 # Selection sort
+print("Selection Sort Steps:")
 class SelectionSort:
 
     def __init__(self, data):
@@ -81,12 +91,21 @@ class SelectionSort:
             "sorted": self.data
         }
 
-#numbers = [5, 3, 8, 4, 1]
-#sorter = SelectionSort(numbers)
-#result = sorter.sort()
-#print(result)
+numbers = [5, 3, 8, 4, 1]
+sorter = SelectionSort(numbers)
+result = sorter.sort()
+
+def format_array(array):
+    width = max(len(str(x)) for x in array)
+    return " | ".join(f"{x:>{width}}" for x in array)
+
+print("Original:", result["original"])
+for step in result["steps"]:
+    print(f"{step['action'].capitalize():<8} | Indices: {step['indices']} | {format_array(step['array'])}")
+print("Sorted:", result["sorted"])
 
 # Insertion sort
+print("Insertion Sort Steps:")
 class InsertionSort:
 
     def __init__(self, data):
@@ -132,18 +151,27 @@ class InsertionSort:
             "steps": self.steps,
             "sorted": self.data
         }
+    
+numbers = [5, 3, 8, 4, 1]
+sorter = InsertionSort(numbers)
+result = sorter.sort()
 
-#numbers = [5, 3, 8, 4, 1]
-#sorter = InsertionSort(numbers)
-#result = sorter.sort()
-#print(result)
+def format_array(array):
+    width = max(len(str(x)) for x in array)
+    return " | ".join(f"{x:>{width}}" for x in array)
+
+print("Original:", result["original"])
+for step in result["steps"]:
+    print(f"{step['action'].capitalize():<8} | Indices: {step['indices']} | {format_array(step['array'])}")
+print("Sorted:", result["sorted"])
 
 # Merge sort
+print("Merge Sort Steps:")
 class MergeSort:
 
     def __init__(self, data):
         self.original = data.copy()
-        self.data = data
+        self.data = data.copy()
         self.steps = []
 
     def sort(self):
@@ -170,9 +198,7 @@ class MergeSort:
             self.steps.append({
                 "action": "compare",
                 "indices": [i, j],
-                "left": left.copy(),
-                "right": right.copy(),
-                "merged": merged.copy()
+                "array": merged + left[i:] + right[j:],
             })
 
             if left[i] <= right[j]:
@@ -185,26 +211,33 @@ class MergeSort:
         while i < len(left):
             merged.append(left[i])
             i += 1
-
         while j < len(right):
             merged.append(right[j])
             j += 1
 
         self.steps.append({
             "action": "merge",
-            "merged": merged.copy(),
-            "left": left.copy(),
-            "right": right.copy()
+            "indices": list(range(len(merged))),
+            "array": merged.copy()
         })
 
         return merged
 
-#numbers = [5, 3, 8, 4, 1]
-#sorter = MergeSort(numbers)
-#result = sorter.sort()
-#print(result)
+numbers = [5, 3, 8, 4, 1]
+sorter = MergeSort(numbers)
+result = sorter.sort()
+
+def format_array(array):
+    width = max(len(str(x)) for x in array)
+    return " | ".join(f"{x:>{width}}" for x in array)
+
+print("Original:", result["original"])
+for step in result["steps"]:
+    print(f"{step['action'].capitalize():<8} | Indices: {step.get('indices', [])} | {format_array(step['array'])}")
+print("Sorted:", result["sorted"])
 
 # Quick sort
+print("Quick Sort Steps:")
 class QuickSort:
 
     def __init__(self, data):
@@ -263,4 +296,15 @@ class QuickSort:
 numbers = [5, 3, 8, 4, 1]
 sorter = QuickSort(numbers)
 result = sorter.sort()
-print(result)
+
+def format_array(array):
+    width = max(len(str(x)) for x in array)
+    return " | ".join(f"{x:>{width}}" for x in array)
+
+print("Original:", result["original"])
+for step in result["steps"]:
+    indices = step.get('indices', [])
+    pivot = step.get('pivot', None)
+    pivot_info = f" | Pivot: {pivot}" if pivot is not None else ""
+    print(f"{step['action'].capitalize():<8} | Indices: {indices}{pivot_info} | {format_array(step['array'])}")
+print("Sorted:", result["sorted"])
