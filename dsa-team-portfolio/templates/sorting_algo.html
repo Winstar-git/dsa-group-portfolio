@@ -15,11 +15,11 @@
           <div class="form-group">
             <label for="algorithm">Select Algorithm:</label>
             <select id="algorithm" name="algorithm" class="form-select">
-              <option value="bubble">Bubble Sort</option>
-              <option value="selection">Selection Sort</option>
-              <option value="insertion">Insertion Sort</option>
-              <option value="merge">Merge Sort</option>
-              <option value="quick">Quick Sort</option>
+              <option value="bubble" {% if result and result.algorithm == 'Bubble Sort' %}selected{% endif %}>Bubble Sort</option>
+              <option value="selection" {% if result and result.algorithm == 'Selection Sort' %}selected{% endif %}>Selection Sort</option>
+              <option value="insertion" {% if result and result.algorithm == 'Insertion Sort' %}selected{% endif %}>Insertion Sort</option>
+              <option value="merge" {% if result and result.algorithm == 'Merge Sort' %}selected{% endif %}>Merge Sort</option>
+              <option value="quick" {% if result and result.algorithm == 'Quick Sort' %}selected{% endif %}>Quick Sort</option>
             </select>
           </div>
 
@@ -31,7 +31,7 @@
               name="size" 
               min="5" 
               max="50" 
-              value="10" 
+              value="{{ request.form.get('size', '10') }}" 
               class="form-input"
             >
           </div>
@@ -42,7 +42,6 @@
         </form>
       </div>
 
-      <!-- Results Display -->
       <div class="sorting-results">
         {% if result %}
           {% if result.error %}
@@ -50,7 +49,6 @@
               <strong>Error:</strong> {{ result.error }}
             </div>
           {% else %}
-            <!-- Algorithm Info -->
             <div class="algo-card">
               <div class="algo-header">
                 <h2 class="algo-title gradient-text">{{ result.algorithm }}</h2>
@@ -67,7 +65,6 @@
                 </div>
               </div>
 
-              <!-- Metrics -->
               <div class="metrics">
                 <div class="metric">
                   <span class="metric-label">Comparisons:</span>
@@ -91,7 +88,25 @@
                 </div>
               </div>
 
-              <!-- Steps Display -->
+              <div class="visualization-box">
+                <div id="bar-container" class="bar-container">
+                  </div>
+                
+                <div class="viz-controls">
+                  <div class="control-group">
+                    <button id="play-pause-btn" type="button" class="btn-viz"><i class="fas fa-play"></i> Play</button>
+                    <button id="reset-btn" type="button" class="btn-viz"><i class="fas fa-undo"></i> Reset</button>
+                  </div>
+                  
+                  <div class="speed-control">
+                    <label for="speed">Speed</label>
+                    <input type="range" id="speed" min="10" max="550" value="450">
+                  </div>
+                  
+                  <span id="step-counter" class="step-counter">Step: 0 / {{ result.total_steps }}</span>
+                </div>
+              </div>
+
               <div class="steps-container">
                 <h3 class="steps-title">Step-by-Step Execution</h3>
                 <pre class="steps-output">
@@ -103,12 +118,13 @@ Original Array: [{{ result.original|join(', ') }}]
 Sorted Array: [{{ result.sorted|join(', ') }}]
                 </pre>
               </div>
-
-              <!-- Visualization Placeholder -->
-              <div class="visualization-placeholder">
-                <p>📊 Visualization will be added here for animations and visual representation</p>
-              </div>
             </div>
+
+            <script>
+                const sortingData = {{ result | tojson | safe }};
+            </script>
+            <script src="{{ url_for('static', filename='js/visualizer.js') }}"></script>
+
           {% endif %}
         {% else %}
           <div class="placeholder">
