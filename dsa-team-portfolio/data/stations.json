@@ -45,6 +45,7 @@
     "North Avenue",
     "Quezon Avenue",
     "GMA-Kamuning",
+    "Cubao",
     "Santolan-Annapolis",
     "Araneta Center-Cubao",
     "Ortigas",
@@ -58,7 +59,7 @@
   ],
   "interchanges": [
     ["Doroteo Jose", "Recto"],
-    ["Araneta Center-Cubao", "Araneta Center-Cubao"],
+    ["Araneta Center-Cubao", "Cubao"],
     ["EDSA", "Taft Avenue"]
   ]
 }
