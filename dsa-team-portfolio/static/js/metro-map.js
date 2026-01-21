@@ -1,6 +1,6 @@
 /**
  * METRO MANILA 2026 - LOGIC & COORDINATES
- * Fixes: Doroteo Jose / Recto Alignment
+ * Fixes: Doroteo Jose/Recto & Cubao Alignment
  */
 
 let startStation = null;
@@ -18,9 +18,8 @@ function distributeStations() {
     };
 
     // VITAL INTERSECTIONS (Hub Pins)
-    // FIX: Changed y from 450 to 380 to move the intersection above Carriedo
     const HUB_RECTO_DJOSE = { x: 250, y: 380 }; 
-    const HUB_CUBAO = { x: 750, y: 350 };       
+    const HUB_CUBAO = { x: 750, y: 350 };       // Intersection of LRT2 slope and MRT3 vertical
     const HUB_TAFT_EDSA = { x: 250, y: 650 };    
 
     Object.keys(paths).forEach(line => {
@@ -43,7 +42,6 @@ function distributeStations() {
                 pt = HUB_TAFT_EDSA;
             } else {
                 // 2. SPACE REMAINING STATIONS
-                // We use a specific distribution to ensure they follow the SVG track path
                 const padding = 0.08;
                 const distance = (index / (nodes.length - 1)) * (totalLength * (1 - 2*padding)) + (totalLength * padding);
                 pt = path.getPointAtLength(distance);
@@ -56,21 +54,21 @@ function distributeStations() {
             const isEven = index % 2 === 0;
 
             if (line === 'lrt1') {
-                text.setAttribute('dx', '-12');
+                text.setAttribute('dx', '-15');
                 text.style.textAnchor = 'end';
             } else if (line === 'mrt3') {
-                text.setAttribute('dx', '12');
+                // MRT3 is on the right, move labels to the right of the line
+                text.setAttribute('dx', '15');
                 text.style.textAnchor = 'start';
             } else {
-                // Stagger LRT2 labels so they don't overlap the angled path
-                text.setAttribute('dy', isEven ? '-12' : '-25');
+                // LRT2: Stagger labels above/below the diagonal line
+                text.setAttribute('dy', isEven ? '-15' : '-28');
                 text.style.textAnchor = 'middle';
             }
         });
     });
 }
 
-// Selection logic remains the same
 function selectStation(name, element) {
     const startIn = document.getElementById('start_input');
     const endIn = document.getElementById('end_input');
