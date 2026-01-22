@@ -1692,8 +1692,8 @@ body, html {
 }
 
 .placeholder-content {
-  width: 90%;
-  max-width: 800px;
+  width:100%;
+  max-width: 100%;
   min-height: 400px;
   padding: 40px 30px;
   background: rgba(2, 16, 30, 0.5);
