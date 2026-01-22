@@ -1,0 +1,110 @@
+.works-section {
+  background: linear-gradient(135deg, #001b33, #004080);
+  min-height: 100vh;
+  padding: 80px 0;
+  color: #f0f6ff;
+}
+
+/* Header styling for works section */
+.works-header {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 0 20px;
+}
+
+.works-header h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.works-header .subtitle {
+  font-size: 1.1rem;
+  color: #a9dfff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Responsive grid layout for work cards */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 5%;
+}
+
+/* Individual work card with lift on hover */
+.work-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(138, 189, 255, 0.4);
+}
+
+.work-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.work-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cde6ff;
+  margin-bottom: 2rem;
+}
+
+.work-action .try-button {
+  background: linear-gradient(90deg, #052fa5, #0341ca);
+  color: #f0f6ff;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+  display: inline-block;
+}
+
+.work-action .try-button:hover {
+  background: linear-gradient(90deg, #0670ff, #0e3aff);
+}
+
+@media (max-width: 768px) {
+  .works-section {
+    padding: 60px 0;
+  }
+
+  .works-header h2 {
+    font-size: 2rem;
+  }
+
+  .works-header .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .works-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .work-card {
+    padding: 1.5rem;
+  }
+
+  .work-title {
+    font-size: 1.5rem;
+  }
+
+  .work-action .try-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

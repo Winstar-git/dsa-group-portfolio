@@ -1,0 +1,386 @@
+/* CSS variables for colors and theming */
+:root {
+    --bg-deep: #010812;
+    --bg-navy: #0a192f;
+    --lrt1-yellow: #ffdc00;
+    --lrt2-purple: #7d2ae8;
+    --mrt3-blue: #0072bc;
+    --method-cyan: #00f2ff;
+    --white: #ffffff;
+}
+
+/* Station Glow & Interaction */
+.station-node-group {
+    cursor: pointer;
+    pointer-events: all;
+}
+
+/* Station circle styling */
+.station-dot {
+    fill: #0b102a;
+    stroke: #ffffff;
+    stroke-width: 1.4;
+}
+
+/* Hover Glow: The "Glowing" effect when you hover a station */
+.station-node-group:hover .station-dot {
+    r: 7;
+    fill: var(--method-cyan);
+    filter: drop-shadow(0 0 8px var(--method-cyan));
+    stroke: var(--white);
+}
+
+/* Selection Glow: When you click to set Start/End */
+.active-start .station-dot {
+    fill: #00ff88 !important;
+    filter: drop-shadow(0 0 12px #00ff88);
+    r: 8;
+}
+
+.active-end .station-dot {
+    fill: #ff4d4d !important;
+    filter: drop-shadow(0 0 12px #ff4d4d);
+    r: 8;
+}
+
+/* The Tracks (Neon Lines) */
+.track {
+    fill: none;
+    stroke-width: 8px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.8;
+    transition: all 0.5s ease;
+}
+
+.lrt1-track { 
+    stroke: var(--lrt1-yellow); 
+    filter: drop-shadow(0 0 5px var(--lrt1-yellow)); 
+}
+
+.lrt2-track { 
+    stroke: var(--lrt2-purple); 
+    filter: drop-shadow(0 0 5px var(--lrt2-purple)); 
+}
+
+.mrt3-track { 
+    stroke: var(--mrt3-blue); 
+    filter: drop-shadow(0 0 5px var(--mrt3-blue)); 
+}
+
+/* Route Active State (Dimming) */
+.route-active .track {
+    opacity: 0.1;
+}
+
+.route-active .on-route {
+    opacity: 1 !important;
+}
+
+.route-active .on-route .track {
+    opacity: 1;
+    stroke-width: 10px;
+    filter: drop-shadow(0 0 15px white);
+}
+
+/* Station Labels */
+.station-text {
+    font-family: "Inter", "Segoe UI", sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    fill: #e6ebff;
+    paint-order: stroke;
+    stroke: rgba(0,0,0,0.45);
+    stroke-width: 2px;
+    pointer-events: none;
+    dominant-baseline: middle;
+}
+
+/* Trip planner section layout */
+.cyber-metro-section {
+  padding: 40px 20px;
+}
+
+.cyber-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grid layout with map and panel */
+.map-layout-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  align-items: start;
+}
+
+.svg-map-area {
+  background: linear-gradient(180deg, rgba(2,10,30,0.6), rgba(0,20,50,0.45));
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.svg-map-area svg {
+  width: 100%;
+  height: 720px;
+  display: block;
+}
+
+.cyber-panel {
+  background: linear-gradient(180deg, rgba(1,12,30,0.95), rgba(2,28,56,0.9));
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 8px 30px rgba(0, 115, 255, 0.12);
+  border: 1px solid rgba(110,203,255,0.08);
+}
+
+.panel-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #bfeaff;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.selection-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.input-display {
+  background: rgba(255,255,255,0.03);
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.input-display label {
+  display: block;
+  font-size: 0.65rem;
+  color: #8fbfe8;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: 0.8px;
+}
+
+.glow-text {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #e6f9ff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(110,203,255,0.02));
+}
+
+.cyber-button {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--method-cyan);
+  color: var(--bg-deep);
+  border: none;
+  padding: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.cyber-button:hover {
+  box-shadow: 0 0 20px var(--method-cyan);
+  background: var(--white);
+}
+
+.cyber-button.secondary-reset {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #a7dfff;
+  box-shadow: none;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+.itinerary-results {
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.path-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.path-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(110,203,255,0.01));
+}
+
+.step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: 0 0 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4) inset;
+  border: 2px solid rgba(255,255,255,0.08);
+}
+
+.map-header .subtitle {
+    font-size: 1.1rem;
+    color: rgba(79, 157, 255, 0.8);
+    margin: 0;
+}
+
+.step-dot.lrt1 { 
+    background: var(--lrt1-yellow); 
+    box-shadow: 0 0 10px var(--lrt1-yellow); 
+}
+
+.step-dot.lrt2 { 
+    background: var(--lrt2-purple); 
+    box-shadow: 0 0 10px var(--lrt2-purple); 
+}
+
+.step-dot.mrt3 { 
+    background: var(--mrt3-blue); 
+    box-shadow: 0 0 10px var(--mrt3-blue); 
+}
+
+.animate-up { 
+    animation: slideUp 360ms cubic-bezier(.2,.9,.2,1); 
+}
+
+@keyframes slideUp { 
+    from { transform: translateY(6px); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; } 
+}
+
+/* Route Highlight & Animation */
+.track.route-highlight {
+  filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 15px currentColor) !important;
+  stroke-width: 3.5 !important;
+  opacity: 1 !important;
+}
+
+.lrt1-track.route-highlight {
+  stroke: #d4534f !important;
+  filter: drop-shadow(0 0 8px #d4534f) drop-shadow(0 0 15px #d4534f) drop-shadow(0 0 25px rgba(212, 83, 79, 0.6)) !important;
+}
+
+.lrt2-track.route-highlight {
+  stroke: #0099cc !important;
+  filter: drop-shadow(0 0 8px #0099cc) drop-shadow(0 0 15px #0099cc) drop-shadow(0 0 25px rgba(0, 153, 204, 0.6)) !important;
+}
+
+.mrt3-track.route-highlight {
+  stroke: #00a86b !important;
+  filter: drop-shadow(0 0 8px #00a86b) drop-shadow(0 0 15px #00a86b) drop-shadow(0 0 25px rgba(0, 168, 107, 0.6)) !important;
+}
+
+@keyframes routeFlow {
+  0% {
+    stroke-dasharray: 0, 100;
+    opacity: 0.3;
+  }
+  50% {
+    stroke-dasharray: 100, 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dasharray: 0, 100;
+    opacity: 0.3;
+  }
+}
+
+#route-path .route-segment {
+  stroke-dasharray: 10, 5;
+  animation: routeFlow 1.5s ease-in-out infinite;
+}
+
+/* Highlight stations on route */
+.station-node-group.on-route .station-dot {
+  r: 6.5;
+  filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00ff00);
+  animation: stationPulse 1s ease-in-out infinite;
+}
+
+@keyframes stationPulse {
+  0%, 100% {
+    r: 6.5;
+    filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00ff00);
+  }
+  50% {
+    r: 8;
+    filter: drop-shadow(0 0 15px #00ff00) drop-shadow(0 0 30px #00ff00) drop-shadow(0 0 40px rgba(0, 255, 0, 0.5));
+  }
+}
+
+.map-header {
+  display: block;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .map-layout-wrapper { 
+    grid-template-columns: 1fr; 
+  }
+  .svg-map-area svg { 
+    height: 480px; 
+  }
+}
+
+/* Select Styling for Graph */
+.input-display select {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d0d8e8;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 12px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, border 0.3s ease, background 0.3s ease;
+  width: 100%;
+}
+
+.input-display select:focus {
+  border: 1px solid #6ecbff;
+  box-shadow: 0 0 12px rgba(110, 203, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.input-display select:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+option[value="BFS"] {
+  background: rgba(0, 150, 255, 0.9);
+  color: #fff;
+  font-weight: bold;
+}
+
+option[value="DFS"] {
+  background: rgba(255, 0, 150, 0.9);
+  color: #fff;
+  font-weight: bold;
+}

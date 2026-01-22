@@ -1,0 +1,139 @@
+.contact-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000a1f, #003366);
+  padding: 80px 20px;
+  text-align: center;
+  color: #e5eeff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header styling with gradient text */
+.contact-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(to right, #8abdff, #67a9ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.contact-header p {
+  color: #a9dfff;
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+
+/* Flex layout for contact cards */
+.contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Individual contact card with hover lift effect */
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 25px;
+  width: 260px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(102, 163, 255, 0.6);
+}
+
+.contact-name {
+  color: #8abdff;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.contact-links a {
+  display: block;
+  color: #a9dfff;
+  margin: 8px 0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.contact-links a:hover {
+  color: #ffffff;
+}
+
+.nickname {
+  font-size: 0.9rem;
+  color: #8abdff;
+  font-weight: 400;
+}
+
+.member-desc {
+  font-size: 0.9rem;
+  color: #bcdcff;
+  line-height: 1.4;
+  margin-top: 5px;
+}
+
+/* Roles and responsibilities information section */
+.roles-info {
+  margin-top: 80px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(2,21,105,0.8), rgba(138,189,255,0.1));
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.roles-info h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.roles-info p {
+  color: #e3f2ff;
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto 15px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 15px;
+  }
+
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+
+  .contact-header p {
+    font-size: 1rem;
+  }
+
+  .contact-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .roles-info {
+    margin-top: 60px;
+    padding: 30px;
+  }
+}

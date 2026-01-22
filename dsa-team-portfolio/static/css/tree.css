@@ -1,0 +1,369 @@
+/* Tree visualizer container with flex layout */
+.tree-visualizer-container {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  background: rgba(0, 30, 60, 0.3);
+  border-radius: 12px;
+  margin: 20px 0;
+  border: 1px solid rgba(79, 157, 255, 0.3);
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12px 8px;
+}
+
+/* Node container with smooth transitions */
+.vt-node-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Individual tree node styling with gradient background */
+.vt-node-container .tree-node {
+  min-width: 50px;
+  max-width: 160px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 6px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4f9dff 0%, #00bfff 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(79, 157, 255, 0.5);
+  border: 2px solid rgba(79, 157, 255, 0.6);
+  cursor: default;
+  user-select: none;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* Highlight effect for search path animation */
+.vt-node-container.vt-highlight .tree-node {
+  background: linear-gradient(135deg, #00d4ff 0%, #00bfff 100%);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 1), 
+              0 0 40px rgba(0, 191, 255, 0.8),
+              inset 0 0 10px rgba(255, 255, 255, 0.3);
+  transform: scale(1.15);
+  animation: pulse-glow 0.6s ease-in-out;
+}
+
+/* Pulsing glow animation for highlighted nodes */
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 212, 255, 1), 
+                0 0 50px rgba(0, 191, 255, 0.7);
+    transform: scale(1.15);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    transform: scale(1.15);
+  }
+}
+
+/* Connection lines styling */
+svg.vt-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.vt-svg line {
+  stroke: rgba(79, 157, 255, 0.5);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* Stage wrapper for centering and scaling */
+.vt-stage {
+  position: relative;
+  margin: 0 auto;
+}
+
+.tree-empty {
+  color: #cfe6ff;
+  font-size: 1rem;
+  padding: 30px;
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* Two-column layout inside tree pages: controls (left) + visual preview (right) */
+.tree-content {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.tree-controls {
+  flex: 0 0 380px;
+  max-width: 42%;
+}
+
+.tree-preview {
+  flex: 1 1 auto;
+  min-width: 320px;
+}
+
+.tree-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000a1f, #001a66, #002b99);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e5eeff;
+  font-family: 'Poppins', sans-serif;
+  padding: 60px 20px;
+}
+
+.tree-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 6000px;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 0 40px rgba(102, 163, 255, 0.3);
+  backdrop-filter: blur(6px);
+}
+
+.tree-message {
+  margin-bottom: 50px;
+  font-size: 1.1rem;
+  color: #a9dfff;
+}
+
+.tree-box h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.tree-box h3 {
+  text-align: left;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #a9dfff;
+}
+
+.tree-box h2 {
+  font-size: 2rem;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.form-group input,
+.form-group select {
+    background: rgba(255, 255, 255, 0.08);
+    color: #d0d8e8;
+    line-height: 1;  
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 5px 10px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #a4afc3;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border: 1px solid #6ecbff;
+    box-shadow: 0 0 10px rgba(110, 203, 255, 0.5);
+}
+
+.btn-primary-tree,
+.btn-serve-tree {
+  background: linear-gradient(90deg, #4f9dff, #6ecbff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.btn-primary-tree:hover,
+.btn-serve-tree:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(111, 187, 255, 0.6);
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.tree-diagram ul {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  list-style: none;
+}
+
+.tree-diagram ul ul {
+  margin-top: 20px;
+  padding: 0;
+}
+
+.tree-diagram li {
+  list-style: none;
+  position: relative;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  min-width: 80px;
+}
+
+.empty {
+  display: inline-block;
+  min-width: 80px;
+  height: 0;
+  visibility: hidden;
+}
+
+.empty::before,
+.empty::after {
+  display: none;
+}
+
+.tree-node {
+    padding: 10px 16px;
+    background: #4f9dff;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(79, 157, 255, 0.5);
+    min-width: 50px;
+    display: inline-block;
+    text-align: center;
+}
+
+.tree-display h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #a9dfff;
+}
+
+/* BST Styles */
+.node-circle {
+  fill: #4f9dff;
+  stroke: black;
+  stroke-width: 2;
+}
+
+.tree-display {
+  text-align: center;
+  padding-top: 20px;
+  position: relative;
+}
+
+.tree-display ul {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  list-style: none;
+}
+
+.tree-display ul ul {
+  margin-top: 20px;
+  padding: 0;
+}
+
+.tree-display li {
+  list-style: none;
+  position: relative;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  min-width: 80px;
+}
+
+.tree-display li::before,
+.tree-display li::after {
+  display: none;
+  content: '';
+}
+
+.dictionary-list-box {
+  text-align: left; 
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.dictionary-list-box h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.flat-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.flat-list li {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.10);
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin: 6px 6px 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e5eeff;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 8px rgba(79, 157, 255, 0.4);
+}
+
+@media (max-width: 900px) {
+  .tree-content {
+    flex-direction: column;
+  }
+  .tree-controls {
+    max-width: 100%;
+    flex: none;
+  }
+  .tree-preview {
+    width: 100%;
+  }
+}

@@ -1,0 +1,270 @@
+/* Home page hero section with gradient background */
+.index-hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 5%;
+  background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Main content wrapper with responsive layout */
+.index-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+  max-width: 1300px;
+  width: 100%;
+}
+
+/* Text content area for hero section */
+.index-text {
+  flex: 1 1 45%;
+  text-align: left;
+  z-index: 2;
+}
+
+.index-text h1 {
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  background: linear-gradient(90deg, #00bfff, #82aaff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+}
+
+.index-text h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #cfe6ff;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Image area with hover scale effect */
+.index-pic {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.index-pic img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.index-pic img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(0, 191, 255, 0.5);
+}
+
+/* Hero section with animated background */
+.hero-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+}
+
+/* Animated gradient background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #001a66, #004bff, #6ecbff);
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-content {
+  z-index: 1;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero-title {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.hero-title span {
+  color: #8abdff;
+  text-shadow: 0 0 20px rgba(106, 181, 255, 0.7);
+}
+
+.hero-tagline {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  color: #dceaff;
+}
+
+.hero-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #8abdff, #4f9dff);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #001a66;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(111, 187, 255, 0.7);
+}
+
+.hero-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+  animation: floatLogo 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(138,189,255,0.7));
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Introduction section with semi-transparent background */
+.intro-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 80px 20px;
+  text-align: center;
+  color: #eaf2ff;
+}
+
+.intro-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.intro-section h2 {
+  font-size: 2.2rem;
+  color: #8abdff;
+  margin-bottom: 1rem;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d9e5ff;
+}
+
+.intro-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 24px;
+  background: #052fa5;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.intro-btn:hover {
+  background: #004bff;
+}
+
+/* Skills showcase grid layout */
+.skills-section {
+  padding: 100px 5%;
+  text-align: center;
+}
+
+/* Responsive grid for skill cards */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px 20px;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(111,187,255,0.5);
+}
+
+.skill-card i {
+  font-size: 2.5rem;
+  color: #8abdff;
+  margin-bottom: 15px;
+}
+
+.skill-card h3 {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #a9dfff;
+}
+
+.gradient-text {
+  color: #ffff; 
+  font-size: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .index-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .index-text h1 {
+    font-size: 4rem;
+  }
+
+  .index-text h2 {
+    font-size: 2rem;
+  }
+
+  .index-pic img {
+    max-width: 400px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}

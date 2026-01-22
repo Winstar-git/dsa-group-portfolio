@@ -1,0 +1,108 @@
+/* Global Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Main body styling with gradient background */
+body {
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #020024 0%, #090979 50%, #00d4ff 100%);
+    color: #e0eaff;
+    min-height: 100vh;
+}
+
+/* Navigation bar with blur effect */
+.navbar {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #00bfff;
+    letter-spacing: 1px;
+}
+
+/* Navigation menu styling */
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-list a {
+    color: #cfe6ff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Glow effect on navigation links */
+.nav-list a:hover {
+    color: #00bfff;
+    text-shadow: 0 0 8px #00bfff;
+}
+
+/* Footer styling */
+.footer {
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 1.5rem;
+    color: #b8d9ff;
+    font-size: 0.9rem;
+}
+
+/* Generic hero section styling */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: linear-gradient(145deg, #1a1a40, #002f6c);
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    margin: 3rem auto;
+    max-width: 1000px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    padding: 3rem 2rem;
+}
+
+.hero-section h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    line-height: 1.6;
+    color: #b3ccff;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
