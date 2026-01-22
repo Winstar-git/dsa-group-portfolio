@@ -39,6 +39,24 @@
                             {% endif %}
                         {% endfor %}
                     </g>
+
+                    <!-- Legend in bottom-right -->
+                    <g id="legend-group" transform="translate(820, 700)">
+                        <!-- Background rectangle -->
+                        <rect width="160" height="90" fill="rgba(10, 20, 50, 0.9)" stroke="rgba(100, 200, 255, 0.5)" stroke-width="1" rx="4"/>
+                        
+                        <!-- LRT-1 (Yellow) -->
+                        <rect x="10" y="10" width="10" height="10" fill="#FFD700" rx="1"/>
+                        <text x="25" y="19" style="fill: #ffffff; font-size: 11px; font-family: Arial, sans-serif;">LRT-1</text>
+                        
+                        <!-- MRT-3 (Blue) -->
+                        <rect x="10" y="30" width="10" height="10" fill="#4169E1" rx="1"/>
+                        <text x="25" y="39" style="fill: #ffffff; font-size: 11px; font-family: Arial, sans-serif;">MRT-3</text>
+                        
+                        <!-- LRT-2 (Purple) -->
+                        <rect x="10" y="50" width="10" height="10" fill="#9370DB" rx="1"/>
+                        <text x="25" y="59" style="fill: #ffffff; font-size: 11px; font-family: Arial, sans-serif;">LRT-2</text>
+                    </g>
                 </svg>
             </div>
 
@@ -82,6 +100,7 @@
                 {% endif %}
             </aside>
         </div>
+
     </div>
 </section>
 
